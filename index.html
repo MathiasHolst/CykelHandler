@@ -1,0 +1,60 @@
+<html lang="da-dk">
+<head>
+    <title>BikeWorld</title>
+    <link href="design.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="navbar" id="topnavbar">
+        <a href="/" class="active">Forside</a>
+        <a href="/Produkter">Produkter</a>
+        <a href="javascript:void(0);" class="icon" onclick="Nfullshow()"><img src="/menu.png"></a>
+      </div>
+    <header class="header" style="display: block;">
+        <h1>Velkommen til BikeWorld</h1>
+        <p><strong>En verden af cykler</strong></p>
+    </header>
+    <br>
+    <br>
+    <div class="main">
+        <div class="card" id="mountainbikes">
+            <h1>Mountainbikes</h1>
+            <div class="img-container">
+            <a href="/produkter#mountainbikes"><img src="/img/mountainbike.jpg"></a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="card">
+            <h1>Citybikes</h1>
+            <div class="img-container">
+            <a href="/produkter#citybikes"><img src="/img/citybike.jpg"></a>
+            </div>
+        </div>
+        <div class="card">
+            <h1>Ryttercykler</h1>
+            <div class="img-container">
+                <a href="/produkter#ryttercykler"><img src="/img/ryttercykel.jpg"></a>
+            </div>
+        </div>
+    </div>
+</body>
+<div class="footer">
+    <h2>BikeWorld Aps</h2>
+    <p>Viborgvej 1, 8800 Viborg</p>
+    <p>Telefon: 88 88 88 88</p>
+    <p>Email: <a href="mailto:hej@bikeworld.dk">hej@bikeworld.dk</a></p>
+</div>
+
+<!-- JavaScript -->
+<script>
+function Nfullshow() {
+ var x = document.getElementById("topnavbar");
+    if (x.className === "navbar") {
+        x.className += " responsive";
+        } else {
+        x.className = "navbar";
+        }
+    }
+</script>
+</html>
