@@ -134,6 +134,7 @@
       .price {
         color: grey;
         font-size: 15px;
+        font-weight: bold;
       }
 
       .smalltxt {
@@ -158,4 +159,33 @@
 .content-header
 {
   font-weight: bold;
+}
+
+.produkt-img{
+    height: 200px;
+    width: 300px;
+}
+
+.produkt-img-mountainbike{
+    height: 300;
+    width: 330;
+}
+
+.produkt-img-citybike{
+    height: 200;
+    width: 330;
+}
+
+.produkt-img-ryttercykel{
+    height: 200;
+    width: 330;
+}
+
+.produkt-img-elcykel{
+    height: 200;
+    width: 330;
+}
+
+.product-name{
+    font-weight: bold;
 }
