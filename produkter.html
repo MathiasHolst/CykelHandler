@@ -16,23 +16,18 @@
         <h1>Velkommen til BikeWorld</h1>
         <p class="under-header"><strong>En verden af cykler</strong></p>
     </header>
-    <br>
     <div class="main">
-        <div class="brr">
-        </div>
-        <div class="card">
-            <h2>Produkter</h2>
-        </div>
+        <br>
         <div class="brr">
         </div>
         <div class="card" id="mountainbikes">
             <h2>Mountainbikes</h2>
             <section class="item-row" style="display: flex;">
-                <section class="item"><img class="produkt-img-mountainbike" src="img/produkter/mountainbike.jpg"><p class="product-name">Mountain Lion</p><p class="price">2000 DKK</p></section>
-                <section class="item"><img class="produkt-img-mountainbike" src="img/produkter/mountainbike.jpg"><p class="product-name">Mountain Lion</p><p class="price">2000 DKK</p></section>
-                <section class="item"><img class="produkt-img-mountainbike" src="img/produkter/mountainbike.jpg"><p class="product-name">Mountain Lion</p><p class="price">2000 DKK</p></section>
-                <section class="item"><img class="produkt-img-mountainbike" src="img/produkter/mountainbike.jpg"><p class="product-name">Mountain Lion</p><p class="price">2000 DKK</p></section>
-                <section class="item"><img class="produkt-img-mountainbike" src="img/produkter/mountainbike.jpg"><p class="product-name">Mountain Lion</p><p class="price">2000 DKK</p></section>
+                <section class="item"><a href="/køb?produkt=mountainlion"><img class="produkt-img-mountainbike" src="img/produkter/mountainbike.jpg"><p class="product-name">Mountain Lion</p><p class="price">2000 DKK</p></a></section>
+                <section class="item"><a href="/køb?produkt=mountainlion"><img class="produkt-img-mountainbike" src="img/produkter/mountainbike.jpg"><p class="product-name">Mountain Lion</p><p class="price">2000 DKK</p></a></section>                
+                <section class="item"><a href="/køb?produkt=mountainlion"><img class="produkt-img-mountainbike" src="img/produkter/mountainbike.jpg"><p class="product-name">Mountain Lion</p><p class="price">2000 DKK</p></a></section>                
+                <section class="item"><a href="/køb?produkt=mountainlion"><img class="produkt-img-mountainbike" src="img/produkter/mountainbike.jpg"><p class="product-name">Mountain Lion</p><p class="price">2000 DKK</p></a></section>                
+                <section class="item"><a href="/køb?produkt=mountainlion"><img class="produkt-img-mountainbike" src="img/produkter/mountainbike.jpg"><p class="product-name">Mountain Lion</p><p class="price">2000 DKK</p></a></section>            
             </section>        
         </div>
         <br>
@@ -81,6 +76,7 @@
     <p>CVR: 0000000</p>
     <p>Telefon: 88 88 88 88</p>
     <p>Email: <a href="mailto:hej@bikeworld.dk">hej@bikeworld.dk</a></p>
+    <p>Udviklet af <a href="https://theodorstenz.dk" target="_Blank">Theodor Stenz</a> og Casper Primdahl</p>
 </div>
 
 <!-- JavaScript -->
@@ -94,5 +90,18 @@ function Nfullshow() {
         navbar.className = "navbar";
         }
     }
+</script>
+
+<!-- Jquery -->
+<script>
+$('.header').hide();
+$('.main').hide();
+$('.footer').hide();
+
+$(document).ready(function(){
+    $('.header').slideDown(1000);
+    $('.main').delay(1000).fadeIn(1000);
+    $('.footer').delay(2000).fadeIn(2000);
+});
 </script>
 </html>

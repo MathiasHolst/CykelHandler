@@ -24,6 +24,12 @@
     color: black;
   }
  
+  .under-header-link
+  {
+      color: black;
+      font-weight: bold;
+  }
+
   .txt
   {
      color: white;
@@ -188,4 +194,5 @@
 
 .product-name{
     font-weight: bold;
+    color: black;
 }
