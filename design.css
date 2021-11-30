@@ -21,7 +21,7 @@
 
   .under-header
   {
-    color: lime;
+    color: black;
   }
  
   .txt
@@ -133,18 +133,12 @@
       
       .price {
         color: grey;
-        font-size: 22px;
+        font-size: 15px;
       }
 
       .smalltxt {
         color: grey;
         font-size: 15px;
-      }
-
-      .img-container{
-        width: 530px;
-        max-width: 500%;
-        height: 500px;
       }
 
       .btn
