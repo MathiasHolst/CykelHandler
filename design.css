@@ -118,13 +118,13 @@
   }
   
   @media screen and (max-width: 600px) {
-    .navbar.responsive {position: relative;}
-    .navbar.responsive .icon {
+    .navbar.mobile {position: relative;}
+    .navbar.mobile .icon {
       position: absolute;
       right: 0;
       top: 0;
     }
-    .navbar.responsive a {
+    .navbar.mobile a {
       float: none;
       display: block;
       text-align: left;
