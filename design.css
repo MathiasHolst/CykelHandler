@@ -1,0 +1,198 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: white;
+  }
+  
+  .header {
+    text-align: center;
+    background: white;
+    color: black;
+  }
+
+  .brr{
+    padding: 50px;
+    display: block;
+  }
+
+  .under-header
+  {
+    color: black;
+  }
+ 
+  .under-header-link
+  {
+      color: black;
+      font-weight: bold;
+  }
+
+  .txt
+  {
+     color: white;
+  }
+
+  .header h1 {
+    font-size: 40px;
+  }
+  
+  .h1 {
+    text-align: center;
+  }
+
+  .navbar {
+    overflow: hidden;
+    background-color: black;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+  }
+  
+  .navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+
+  .navbar .icon {
+    display: none;
+  }
+  
+  .navbar a:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  .navbar a.active {
+    background-color: white;
+    color: black;
+  }
+  
+  .row {  
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+  }
+  
+
+  .main {
+      color:  black;
+      background-color: white;
+      margin: auto;
+  }
+
+  .four-o-four {
+      color: red;
+      margin: auto;
+  }
+
+  .footer {
+    padding: 20px;
+    text-align: center;
+    background: black;
+    color: white;
+    background-size: auto;
+  }
+
+  a
+  {
+      color: white;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .navbar a:not(:first-child) {display: none;}
+    .navbar a.icon {
+      float: right;
+      display: block;
+      width: auto;
+      height: 55px;
+      margin-top: -5px;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .navbar.mobile {position: relative;}
+    .navbar.mobile .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .navbar.mobile a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+  }
+
+    .card {
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+      }
+      
+      .price {
+        color: grey;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .smalltxt {
+        color: grey;
+        font-size: 15px;
+      }
+
+      .btn
+      {
+          color: whitesmoke;
+          border: 1px solid blue;
+          padding: 10px 30px;
+          text-decoration: none;
+          text-transform: uppercase;
+      }
+      
+      .btn:hover
+      {
+          border: 1px solid lime;
+      }
+
+.content-header
+{
+  font-weight: bold;
+}
+
+.produkt-img{
+    height: 200px;
+    width: 300px;
+}
+
+.produkt-img-mountainbike{
+    height: 300;
+    width: 330;
+}
+
+.produkt-img-citybike{
+    height: 200;
+    width: 330;
+}
+
+.produkt-img-ryttercykel{
+    height: 200;
+    width: 330;
+}
+
+.produkt-img-elcykel{
+    height: 200;
+    width: 330;
+}
+
+.product-name{
+    font-weight: bold;
+    color: black;
+}

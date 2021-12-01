@@ -1,0 +1,92 @@
+<html lang="da-dk">
+<head>
+    <title>Forside - BikeWorld</title>
+    <link href="design.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="navbar" id="topnavbar">
+        <a id="nav-forside" href="/?prev=forside" class="active">Forside</a>
+        <a href="/produkter?prev=forside">Produkter</a>
+        <a href="/login?prev=forside">Login</a>
+        <a href="javascript:void(0);" class="icon" onclick="Nfullshow()"><img id="menu_icon" src="menu_white.png"></a>
+      </div>
+      <div class="brr">
+      </div>
+    <header class="header" style="display: block;">
+        <h1>Velkommen til BikeWorld</h1>
+        <p class="under-header"><strong>En verden af cykler</strong></p>
+        <a href="/produkter?prev=forside" class="under-header-link">Se produkter</a>
+    </header>
+    <br>
+    <br>
+    <div class="main">
+        <div class="brr">
+        </div>
+        <div class="card">
+            <h2>Hvem er vi?</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus nec eros at tincidunt. Morbi odio orci, pulvinar sit amet dignissim eget, aliquet ac erat.</p>
+        </div>
+        <div class="brr">
+        </div>
+        <div class="card" id="mountainbikes">
+            <h1>Mountainbikes</h1>
+            <a href="/produkter#mountainbikes?prev=forside"><img style="height: 600px; " src="img/mountainbike.jpeg"></a>
+        </div>
+        <br>
+        <br>
+        <div class="card">
+            <h1>Citybikes</h1>
+            <a href="/produkter#citybikes?prev=forside"><img style="height: 677px;" src="img/citybike.jpg"></a>
+        </div>
+        <br>
+        <br>
+        <div class="card">
+            <h1>Ryttercykler</h1>
+                <a href="/produkter#ryttercykler?prev=forside"><img style="height: 570px;" src="img/ryttercykel.jpg"></a>
+        </div>
+        <br>
+        <br>
+        <div class="card">
+            <h1>Elcykler</h1>
+                <a href="/produkter#elcykler?prev=forside"><img style="height: 470px;" src="img/elcykel.jpg"></a>
+        </div>
+        <div class="brr">
+        </div>
+    </div>
+</body>
+<div class="footer">
+    <h2>BikeWorld Aps</h2>
+    <p>Viborgvej 1, 8800 Viborg</p>
+    <p>CVR: 0000000</p>
+    <p>Telefon: 88 88 88 88</p>
+    <p>Email: <a href="mailto:hej@bikeworld.dk">hej@bikeworld.dk</a></p>
+    <p>Udviklet af <a href="https://theodorstenz.dk" target="_Blank">Theodor Stenz</a> og Casper Primdahl</p>
+</div>
+
+<!-- JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function Nfullshow() {
+ var navbar = document.getElementById("topnavbar");
+    if (navbar.className === "navbar") {
+        navbar.className += " mobile";
+        } else {
+        navbar.className = "navbar";
+        }
+    }
+</script>
+
+<!-- Jquery -->
+<script>
+    $('.header').hide();
+    $('.main').hide();
+    $('.footer').hide();
+    
+    $(document).ready(function(){
+        $('.header').slideDown(1000);
+        $('.main').delay(1000).fadeIn(1000);
+        $('.footer').delay(2000).fadeIn(2000);
+    });
+    </script>
+</html>
