@@ -1,0 +1,116 @@
+<html lang="da-dk">
+<head>
+    <title>Login - BikeWorld</title>
+    <link href="design.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="navbar" id="topnavbar">
+        <a id="nav-forside" href="/">Forside</a>
+        <a href="/produkter">Produkter</a>
+        <a href="/login" class="active">Login</a>
+        <a href="javascript:void(0);" class="icon" onclick="Nfullshow()"><img id="menu_icon" src="/img/menu_white"></a>
+      </div>
+      <div class="brr">
+      </div>
+    <header class="header" style="display: block;">
+        <h1>Velkommen til BikeWorld</h1>
+        <p class="under-header"><strong>En verden af cykler</strong></p>
+    </header>
+    <br>
+    <div class="main">
+        <div class="brr">
+        </div>
+        <div class="card">
+            <form class="form"></form>
+                <div>
+                    <label><strong>Log Ind:</strong></label>
+                </div>
+                <br>
+                <br>
+              <div>
+                <label for="name">Navn:</label>
+                  <input type="text" placeholder="Brugernavn" name="brugernavn" id="brugernavn" required>
+                  </div>
+                  <br>
+                  <div>
+                  <label for="password">Kode:</label>
+                  <input type="password" placeholder="Kodeord" name="kodeord" id="kodeord" required>
+                  </div>
+                  <br>
+                  <div>
+                  <a href="#" style="color: black;" onclick="login()"><strong>Log Ind</strong></a>
+                  </div>
+                </form>
+        </div>
+        <div class="brr">
+        </div>
+        <div class="brr">
+        </div>
+        <br>
+        <br>
+    </div>
+</body>
+<div class="footer">
+    <h2>BikeWorld Aps</h2>
+    <p>Viborgvej 1, 8800 Viborg</p>
+    <p>CVR: 0000000</p>
+    <p>Telefon: 88 88 88 88</p>
+    <p>Email: <a href="mailto:hej@bikeworld.dk">hej@bikeworld.dk</a></p>
+    <p>Udvikler: <a href="https://theodorstenz.dk" target="_Blank">Theodor Stenz</a></p>
+    <p>Assisterende Udvikler: Casper Primdahl</p>
+</div>
+
+<!-- JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function Nfullshow() {
+ var navbar = document.getElementById("topnavbar");
+    if (navbar.className === "navbar") {
+        navbar.className += " mobile";
+        } else {
+        navbar.className = "navbar";
+        }
+    }
+</script>
+
+<!-- Jquery -->
+<script>
+    $('.header').hide();
+    $('.main').hide();
+    $('.footer').hide();
+    
+    $(document).ready(function(){
+        $('.header').slideDown(1000);
+        $('.main').delay(1000).fadeIn(1000);
+        $('.footer').delay(2000).fadeIn(2000);
+    });
+    </script>
+
+<!-- Simpelt Tracking + Login Redirect-->
+<script>
+var url_string = document.URL;
+var url = new URL(url_string);
+var prev = url.searchParams.get('prev');
+
+function login() {
+console.log(document.getElementById('brugernavn').value);
+console.log(document.getElementById('kodeord').value);
+
+    var brugernavn = document.getElementById('brugernavn').value;
+    var kodeord = document.getElementById('kodeord').value;
+    if(brugernavn == null || kodeord == null || brugernavn == "" || kodeord == "" || brugernavn == " " || kodeord == " ")
+    {
+        alert('Fejl - Alle felter skal udfyldes. // Prøv igen');
+    }
+    else if(prev == 'forside')
+    {
+        window.location.replace('/dologin/' + brugernavn + '/' + kodeord + '/' + 'index');
+    }
+    else if(prev == 'produkter')
+    {
+        window.location.replace('/dologin/' + brugernavn + '/' + kodeord + '/' + 'produkter');
+    }
+}
+</script>
+</html>
