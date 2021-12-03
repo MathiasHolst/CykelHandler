@@ -11,11 +11,13 @@ const alert = require("alert");
 const e = require("express");
 const { ResumeToken } = require("mongodb");
 const { json } = require("body-parser");
-const CONNECTION_URL = "mongodb+srv://theom:theomdev123@cluster0.xrtup.mongodb.net/cykelhandler?retryWrites=true&w=majority";
+const CONNECTION_URL = "mongodb+srv://theom:yeylCBoy8trpuHwD@cluster0.xrtup.mongodb.net/cykelhandler?retryWrites=true&w=majority";
 const DATABASE_NAME = "cykelhandler";
 let port = process.env.PORT || 5000;
 var isloggedin = false;
 var commonerr = 'Der skete en fejl. // Prøv igen senere.';
+var username = "";
+var password = "";
 
 var app = express();
 app.use(BodyParser.json());
@@ -23,6 +25,7 @@ app.use(BodyParser.urlencoded({ extended: true }));
 var database, brugerCollection, vareCollection;
 
 app.listen(port, () => {
+  console.log('Server created on port: ' + port);
   MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
       if(error) {
           throw error
@@ -53,6 +56,17 @@ app.listen(port, () => {
   
   app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/views/login.html");
+  });
+
+  app.get("/dashboard", (req, res) => {
+  if(isloggedin == true)
+  {
+    res.sendFile(__dirname + "/views/dashboard.html");
+  }
+  else
+  {
+    alert('Fejl - Du er ikke logget ind.');
+  }
   });
   
   //Resources
@@ -118,7 +132,12 @@ app.get("/dologin/:user/:pass/:prev/", (req, res) => {
     //On error
     if(error)
     {
+      isloggedin = false;
+      username = "";
+      password = "";
       alert(commonerr);
+      console.log(error);
+      res.redirect('/' + req.params.prev);
     }
     //On vaild result
     if(result != null)
@@ -128,11 +147,17 @@ app.get("/dologin/:user/:pass/:prev/", (req, res) => {
         {
           //On error
           isloggedin = false;
+          username = "";
+          password = "";
           alert(commonerr);
+          console.log(error);
+          res.redirect('/' + req.params.prev);
         }
         if(result != null)
         {
           isloggedin = true;
+          username = req.params.user;
+          password = req.params.pass;
           console.log('Logged in!');
           alert('Du er nu logget ind!');
           res.redirect('/' + req.params.prev);
@@ -141,6 +166,8 @@ app.get("/dologin/:user/:pass/:prev/", (req, res) => {
         {
           //Request is invalid and server returned: 401 - Unauthorized
           isloggedin = false;
+          username = "";
+          password = "";
           alert(commonerr);
           res.redirect('/' + req.params.prev);
         }
@@ -158,110 +185,57 @@ app.get("/dologin/:user/:pass/:prev/", (req, res) => {
 ////Product Management
 
 //Product Add
-app.get("/addproduct/:user/:pass/:productname/:productprice/:productimage", (req, res) => {
-  //Authorization
-  //Find username in db
-  brugerCollection.findOne({ "brugernavn": req.params.user }, (error, result) => {
-    //On error
-    if(error)
-    {
-      alert(commonerr);
-    }
-    //On vaild result
-    if(result != null)
-    {
-      brugerCollection.findOne({ "kodeord": req.params.pass}, (error, result) => {
-        if(error)
-        {
-          //On error
-          alert(commonerr);
-        }
-        if(result != null)
-        {
-          //Authorization complete
-          //Check if user is logged in + Add Product
-          if(isloggedin == true)
-          { 
+app.get("/addproduct/:productname/:productprice/:productimage", (req, res) => {
+    //Check if user is logged in + Add Product
+        if(isloggedin == true)
+        { 
           vareCollection.insertOne({"navn": req.params.productname, "pris": req.params.productprice, "billede": req.params.productimage}, (error) => {
             if(error)
             {
               alert('Der skete en fejl. Produktet blev ikke tilføjet. // Prøv igen senere');
+              res.redirect('/dashboard');
             }
             else
             {
-              alert('Succes! - Et prodult er blevet tilføjet!');
+              alert('Succes! - Et produkt er blevet tilføjet!');
+              res.redirect('/dashboard');
             }
           });
         }
         else
         {
+          isloggedin = false;
+          username = "";
+          password = "";
           alert('Fejl - Du er ikke logget ind.');
-          res.sendFile(__dirname + "/views/index.html");
-        }
-        }
-        else
-        {
-          //Authorization failed
-          alert(commonerr);
-          res.sendFile(__dirname + "/views/index.html");
+          res.redirect('/dashboard');
         }
       });
-    }
-    else
-    {
-      //On invalid result
-      alert('Fejl - Du er ikke logget ind.');
-      res.sendFile(__dirname + "/views/index.html");
-    }
-  });
-});
-
 //Product Remove
 //Product id instead of product name?  -   Test and change if needed.
-app.get("/removeproduct/:user/:pass/:productname", (req, res) => {
- //Authorization
-  //Find username in db
-  brugerCollection.findOne({ "brugernavn": req.params.user }, (error, result) => {
-    //On error
-    if(error)
-    {
-      res.sendStatus(500);
-    }
-    //On vaild result
-    if(result != null)
-    {
-      brugerCollection.findOne({ "kodeord": req.params.pass}, (error, result) => {
-        if(error)
-        {
-          //On error
-          res.sendStatus(500);
-        }
-        if(result != null)
-        {
-          //Authorization complete
-          //Remove Product
-          vareCollection.deleteOne({ "navn": req.params.productname}, (error) => {
-            if(error)
-            {
-              res.sendStatus(500);
-            }
-            else
-            {
-              res.sendStatus(200);
-            }
-          });
-        }
-        else
-        {
-          //Authorization failed
-          result.sendStatus(401);
-        }
-      });
-    }
-    else
-    {
-      //On invalid result
-      res.sendStatus(401);
-    }
-  });
-});
+app.get("/removeproduct/:productname/", (req, res) => {
+  //Check if user is logged in + Remove Product
+      if(isloggedin == true)
+      { 
+        vareCollection.deleteOne({"navn": req.params.productname}, (error) => {
+          if(error)
+          {
+            alert('Der skete en fejl. Produktet blev ikke fjernet. // Prøv igen senere');
+            res.redirect('/dashboard');
+          }
+          else
+          {
+            alert('Succes! - Et produkt er blevet fjernet!');
+            res.redirect('/dashboard');
+          }
+        });
+      }
+      else
+      {
+        isloggedin = false;
+        username = "";
+        password = "";
+        alert('Fejl - Du er ikke logget ind.');
+        res.redirect('/dashboard');
+      }
+    });

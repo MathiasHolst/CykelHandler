@@ -1,7 +1,7 @@
 <html lang="da-dk">
 <head>
     <title>Dashboard - BikeWorld</title>
-    <link href="design.css" rel="stylesheet" type="text/css">
+    <link href="/design.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -9,7 +9,8 @@
         <a id="nav-forside" href="/">Forside</a>
         <a href="/produkter">Produkter</a>
         <a href="/login">Login</a>
-        <a href="javascript:void(0);" class="icon" onclick="Nfullshow()"><img id="menu_icon" src="menu_white.png"></a>
+        <a href="/dashboard" class="active">Dashboard</a>
+        <a href="javascript:void(0);" class="icon" onclick="Nfullshow()"><img id="menu_icon" src="/img/menu_white"></a>
       </div>
       <div class="brr">
       </div>
@@ -22,7 +23,32 @@
         <div class="brr">
         </div>
         <div class="card">
-            
+            <form class="form"></form>
+                <div>
+                    <label><strong>Tilføj Cykler:</strong></label>
+                </div>
+                <br>
+                <br>
+              <div>
+                <label for="name">Navn:</label>
+                  <input type="text" placeholder="Varenavn" name="varenavn" id="varenavn" required>
+                  </div>
+                  <br>
+                  <div>
+                  <label type="text">Pris:</label>
+                  <input type="double" placeholder="Pris" name="pris" id="pris" required>
+                  </div>
+                  <br>
+                  <div>
+                    <div>
+                        <label type="text">Billede:</label>
+                        <input type="text" placeholder="Billede (link)" name="billede" id="billede" required>
+                        </div>
+                        <br>
+                        <br>
+                  <a href="#" style="color: black;" onclick="addproduct()"><strong>Tilføj Produkt</strong></a>
+                  </div>
+                </form>
         </div>
         <div class="brr">
         </div>
@@ -68,40 +94,27 @@ function Nfullshow() {
     });
     </script>
 
-<!-- Simpelt Block -->
+<!-- Simpelt Tracking + Login Redirect-->
 <script>
 var url_string = document.URL;
 var url = new URL(url_string);
-var brugernavn = url.searchParams.get('brugernavn');
-var kodeord = url.searchParams.get('kodeord');
 var prev = url.searchParams.get('prev');
-if(prev == 'forside')
-prev = 'index';
 
-if(brugernavn == null || kodeord == null)
-{
-    if(prev != null)
+function addproduct() {
+console.log(document.getElementById('varenavn').value);
+console.log(document.getElementById('pris').value);
+console.log(document.getElementById('billede').value);
+
+    var varenavn = document.getElementById('varenavn').value;
+    var pris = document.getElementById('pris').value;
+    var billede = document.getElementById('billede').value;
+    if(varenavn == null || pris == null || varenavn == "" || pris == "" || varenavn == " " || pris == " " || billede == null || billede == "" || billede == " ")
     {
-        window.location.href='/' + prev + '.html';
+        alert('Fejl - Alle felter skal udfyldes. // Prøv igen');
     }
     else
     {
-        window.location.href='/index.html';
-    }
-}
-else if(brugernavn.includes('admin') && kodeord.includes('admin'))
-{
-    console.log('ok');
-}
-else
-{
-    if(prev != null)
-    {
-        window.location.href='/' + prev + '.html';
-    }
-    else
-    {
-        window.location.href='/index.html';
+        window.location.replace('addproduct' + '/' + varenavn + '/' + pris + '/' + billede);
     }
 }
 </script>
